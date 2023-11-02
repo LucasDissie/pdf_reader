@@ -1,8 +1,26 @@
 const pdfextract = require('pdf.js-extract');
 const grootboeken = require('./ProductenGrootboeken.json');
+const express = require('express');
+
+const port = 5000;
+const app = express();
 
 const pdfExtract = new pdfextract.PDFExtract();
 var products;
+
+app.use(express.static('public'))
+app.get('/', (req, res) => {        //get requests to the root ("/") will route here
+  res.sendFile('./public/index.html', {root: __dirname}); 
+  res.send(products);     
+});
+
+app.get('/products', (req, res) => {        //get requests to the root ("/") will route here
+  res.send(products);     
+});
+
+app.listen(port, () => {            
+  console.log(`Now listening on port ${port}`); 
+});
 
 function extractData() {
   return new Promise((resolve, reject) => {
@@ -69,6 +87,7 @@ getProducts().then(data => {
   products = parseProducts(data);
   console.log(products);
 }) 
+
 
 
 
