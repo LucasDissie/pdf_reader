@@ -12,6 +12,7 @@
     "canvas": "^2.11.2",
     "express": "^4.18.2",
     "pdf.js": "^0.1.0",
-    "pdf.js-extract": "^0.2.1"
+    "pdf.js-extract": "^0.2.1",
+    "pkg": "^5.8.1"
   }
 }
